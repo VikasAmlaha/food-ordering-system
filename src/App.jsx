@@ -1,34 +1,12 @@
-import Header from "./components/Header";
-import Body from "./components/Body";
-
-
-/**
- * App Structure (component tree)
- * 
- * AppLayout
- *   ├── Header
- *   │     ├── Logo
- *   │     └── Navigation Links
- *   ├── Body
- *   │     ├── Search (not functional yet, just placeholder)
- *   │     └── Restaurant Container
- *   │            └── RestaurantCard (repeated using map)
- *   └── Footer
- *          |-- Copyrights
- *          |-- Links
- *          |-- Address
- *          |-- Contacts
- */
-
-
-// 5️⃣ Root Layout (Parent Component)
-// - Combines Header + Body + Footer
+import TopBar from "./components/Header.jsx";
+// import Body from "./components/Body.jsx";
+import { Outlet } from "react-router";
 
 const AppLayout = () => {
   return (
     <div>
-      <Header />
-      <Body />
+      <TopBar />
+      <Outlet />
       <h1>Footer</h1>
     </div>
   );

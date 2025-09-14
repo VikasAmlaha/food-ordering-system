@@ -78,6 +78,20 @@
 }
 
 
+.skeleton-body {
+  height: 250px;
+  width: 350px;
+  background-color: rgba(200, 198, 198, 0.584);
+  margin: 1rem;
+  border-radius: 1rem;
+}
+
+.restaurant-skeleton-body {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
 
 
 

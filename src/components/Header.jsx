@@ -1,10 +1,25 @@
-import { LOGO } from "../util/constant"
+import { useEffect, useState } from "react";
+import { LOGO } from "../util/constant";
+import { Link } from "react-router";
 
 // 2️⃣ Header Component
 // - Shows a logo
 // - Shows navigation menu (Home, About, etc.)
 
 const Header = () => {
+  console.log("Rendering");
+  const [buttonText, setButtonText] = useState("Login");
+  const handleButtonClick = () => {
+    if (buttonText === "Login") {
+      setButtonText ("Logout");
+    } else {
+      setButtonText ("Login");
+    }
+  };
+  useEffect(() => {
+    console.log("useEffect Ran");
+  }, [buttonText]);
+
   return (
     <div className="header-container">
       <div className="header-logo">
@@ -17,10 +32,24 @@ const Header = () => {
         />
       </div>
       <ul className="header-nav-items">
-        <li className="header-nav-item"> <a href="">HOME</a></li>
-        <li className="header-nav-item"> <a href="">ABOUT</a></li>
-        <li className="header-nav-item"> <a href="">CONTACT</a></li>
-        <li className="header-nav-item"> <a href="">CART</a></li>
+        <li className="header-nav-item">
+           <Link to="/">Home</Link> 
+           </li>
+        <li className="header-nav-item">
+           <Link to="/about">About Us</Link>
+           </li>
+        <li className="header-nav-item"> 
+          <Link to="/contact">Contact Us</Link>
+          </li>
+        <li className="header-nav-item"> Cart </li>
+        <li className="header-nav-item">
+          <button
+            onClick={handleButtonClick}
+            style={{padding: "0.5rem", cursor: "pointer"}}
+          >
+            {buttonText}
+          </button>
+        </li>
       </ul>
     </div>
   );
