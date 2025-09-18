@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { RESTAURANT_API, RESTAURANT_IMG } from "../util/constant"; 
 import RestaurantSkeleton from "./RestaurantSkeleton";
+import { useParams } from "react-router";
 
 // Swiggy’s API uses these special strings to mark menu categories.
 // These help us filter out the correct parts of the API response.
@@ -20,6 +21,8 @@ const RestaurantsPage = () => {
   const [restaurantData, setRestaurantData] = useState([]);     // stores whole restaurant info (name, details, etc.)
   const [restaurantItems, setRestaurantItems] = useState([]);   // stores only the menu categories (starters, mains, etc.)
   const [loading, setLoading] = useState(true);                 // whether we’re still fetching data
+  const { resId } = useParams();
+  console.log(resId);
 
   // -------------------------------
   // ✅ Function to fetch API data
@@ -29,11 +32,11 @@ const RestaurantsPage = () => {
       setLoading(true); // show loading spinner
 
       // fetch JSON data from API
-      const response = await fetch(RESTAURANT_API);
+      const response = await fetch(RESTAURANT_API + resId);
       const json = await response.json();
 
       // ⚡ Debug line (can pause in browser dev tools)
-      debugger;
+      // debugger;
 
       // -------------------------------
       // ✅ Extract menu categories step by step
@@ -144,14 +147,14 @@ const RestaurantAccordion = (props) => {
         <div className="accordion-header--title">
           {title} ({itemCards?.length})
         </div>
-        <div className="accordion-header--action-icon">+/-</div>
+        <div className="accordion-header--action-icon">{viewAccordion ? "▲": "▼"}</div>
       </button>
 
       {/* Accordion Panel (only visible if open) */}
       <div className={`accordion-panel-${viewAccordion ? "view" : "none"}`}>
-        {itemCards?.map((item) => (
+        {itemCards?.map((item, index) => (
           <RestaurantMenuView
-            key={item?.card?.info?.name}
+            key={`${title}-${item?.card?.info?.name}-${index}`}
             menuData={item?.card}
           />
         ))}

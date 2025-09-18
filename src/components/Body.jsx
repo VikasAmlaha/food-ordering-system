@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { useState, useEffect } from "react";
 import RestaurantSkeleton from "./RestaurantSkeleton";
 import { HOMEPAGE_RESTAURANT_API } from "../util/constant";
+import { Link } from "react-router";
 
 // 4️⃣ Body Component
 // - Contains search bar placeholder
@@ -175,7 +176,12 @@ const Body = () => {
         </div>
       <div className="res-container">
         {filteredListRestaurants?.map((restaurant, idx) => (
+          <Link
+            key={restaurant?.info?.id}
+            to={`/restaurant/${restaurant?.info?.id}`}
+            >
           <RestaurantCard key={restaurant?.info?.id} resObj={restaurant} />
+          </Link>
         ))}
       </div>
     </div>
