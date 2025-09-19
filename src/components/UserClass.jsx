@@ -7,9 +7,16 @@ class UserClass extends React.Component {
             count2: 2,
         };
 
+        console.log("Child Constuctor Ran")
+
+    }
+
+    componentDidMount(){
+        console.log("Child Component Did mount")
     }
 
     render() {
+        console.log("Child render method ran")
         const { name, location } = this?.props;
         const { count, count2 } = this.state;
         return (

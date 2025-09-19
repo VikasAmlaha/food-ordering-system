@@ -7,7 +7,7 @@ import { Link } from "react-router";
 // - Shows navigation menu (Home, About, etc.)
 
 const Header = () => {
-  console.log("Rendering");
+  
   const [buttonText, setButtonText] = useState("Login");
   const handleButtonClick = () => {
     if (buttonText === "Login") {
@@ -17,7 +17,7 @@ const Header = () => {
     }
   };
   useEffect(() => {
-    console.log("useEffect Ran");
+    
   }, [buttonText]);
 
   return (
