@@ -1,5 +1,5 @@
-import UserClass from "./UserClass";
-// import UserFunction from "./UserFunction";
+// import UserClass from "./UserClass";
+import UserFunction from "./UserFunction";
 import React from "react";
 
 
@@ -21,11 +21,11 @@ class About extends React.Component {
     <div>
       <h1>About Us Page</h1>
       <div style={{ display: "flex", padding: "1rem", gap: "2rem" }}>
-        <div style={{ flex: 1 }}>
+        {/* <div style={{ flex: 1 }}>
           <UserClass name="Vikas" location="Hyderabad" />
-        </div>
+        </div> */}
         <div style={{ flex: 1 }}>
-         <UserClass name="Vikas" location="Mars" />
+         <UserFunction />
         </div> 
         
       </div>

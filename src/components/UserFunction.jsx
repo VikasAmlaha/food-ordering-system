@@ -1,22 +1,37 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 
-const UserFunction = (props) => {
-  const [count, setCount] = useState(0);
-  const [count2, setCount2] = useState(2);
-  const { name, location } = props;
+const DEVELOPER_API = "https://api.github.com/users/VikasAmlaha";
+
+
+const UserFunction = () => {
+  const [details, setDetails] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const getDeveloperData = async () => {
+    try {
+      const data = await fetch(DEVELOPER_API);
+      const json = await data.json();
+      console.log(json);
+
+      setDetails(json);
+    } catch (error) {
+      console.error("Error fetching developer data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getDeveloperData();
+  }, []);
+
   return (
     <div>
-      <h1>User Details Functional Component</h1>
-      <h2>Name : {name}</h2>
-      <h2>Location : {location}</h2>
-      <h3>Count : {count}</h3>
-      <h3>Count2 : {count2}</h3>
-      <div style={{ display: "flex", gap: 5 }}>
-        <button onClick={() => setCount((prev) => prev + 1)}>Counter</button>
-        <button onClick={() => setCount2((prev) => prev + 2)}>
-          Counter*2
-        </button>
-      </div>
+      
+      {loading ? <h1>Loading...</h1> : <h1>Name : {details?.name}</h1>}
+      {loading ? <h2>Loading...</h2> : <img src={details?.avatar_url} style={{borderRadius: "10% 30% 50% 70%"}}/>}
+      {loading ? <h1>Loading...</h1> : <h1>Public Repos : {details?.public_repos}</h1>}
+      
     </div>
   );
 };
