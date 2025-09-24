@@ -9,7 +9,6 @@ import { Link } from "react-router";
 // - Loops (maps) through resList and renders multiple RestaurantCards
 
 const Body = () => {
- console.log("Page rendered");
  
  const [listOfRestaurants, setListOfRestaurants] = useState([]);
  const [filteredListRestaurants, setFilteredListRestaurants] = useState([]);
